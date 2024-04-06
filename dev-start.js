@@ -1,14 +1,14 @@
 const concurrently = require("concurrently");
 
 concurrently([
-	{
-		command: "",
-		name: "",
-		prefixColor: "",
-	},
-	{
-		command: "",
-		name: "",
-		prefixColor: "",
-	},
+  {
+    command: "yarn db-start",
+    name: "db",
+    prefixColor: "blue",
+  },
+  {
+    command: "yarn start",
+    name: "react-app",
+    prefixColor: "yellow",
+  },
 ]);

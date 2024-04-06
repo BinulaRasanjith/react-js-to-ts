@@ -1,57 +1,34 @@
 {
-	"posts": [
-		{
-			"id": 1,
-			"title": "Adventure Awaits",
-			"description": "Embark on a thrilling journey to discover new landscapes and challenges.",
-			"userId": 1
-		},
-		{
-			"id": 2,
-			"title": "Gourmet Delights",
-			"description": "Indulge your taste buds with exquisite flavors from around the world.",
-			"userId": 2
-		},
-		{
-			"id": 3,
-			"title": "Infinite Horizons",
-			"description": "Explore the vastness of the universe and gaze upon the wonders of the cosmos.",
-			"userId": 3
-		},
-		{
-			"id": 4,
-			"title": "Serene Sunsets",
-			"description": "Witness breathtaking sunsets that paint the sky in hues of orange and pink.",
-			"userId": 1
-		},
-		{
-			"id": 5,
-			"title": "Mystical Creatures",
-			"description": "Encounter mythical beings and magical creatures in hidden realms.",
-			"userId": 2
-		},
-		{
-			"id": 6,
-			"title": "Tech Innovations",
-			"description": "Stay updated on the latest technological advancements shaping the future.",
-			"userId": 3
-		}
-	],
-	"users": [
-		{
-			"id": 1,
-			"name": "Explorer123",
-			"email": "explorer123@example.com"
-		},
-		{
-			"id": 2,
-			"name": "FoodieDreamer",
-			"email": "foodiedreamer@example.com"
-		},
-		{
-			"id": 3,
-			"name": "TechEnthusiast",
-			"email": "techenthusiast@example.com"
-		}
-	]
+  "posts": [
+    {
+      "id": "1",
+      "title": "Adventure Awaits",
+      "description": "Embark on a thrilling journey to discover new landscapes and challenges."
+    },
+    {
+      "id": "2",
+      "title": "Gourmet Delights",
+      "description": "Indulge your taste buds with exquisite flavors from around the world."
+    },
+    {
+      "id": "3",
+      "title": "Infinite Horizons",
+      "description": "Explore the vastness of the universe and gaze upon the wonders of the cosmos."
+    },
+    {
+      "id": "4",
+      "title": "Serene Sunsets",
+      "description": "Witness breathtaking sunsets that paint the sky in hues of orange and pink."
+    },
+    {
+      "id": "5",
+      "title": "Mystical Creatures",
+      "description": "Encounter mythical beings and magical creatures in hidden realms."
+    },
+    {
+      "id": "6",
+      "title": "Tech Innovations",
+      "description": "Stay updated on the latest technological advancements shaping the future."
+    }
+  ]
 }
