@@ -9,10 +9,12 @@ const PostDetail = () => {
   console.log(post);
 
   return (
-    <div className="post">
-      <h2>{post.title}</h2>
-      <p>{post.description}</p>
-    </div>
+    !isLoading && (
+      <div className="post-detail">
+        <h2>{post.title}</h2>
+        <p>{post.description}</p>
+      </div>
+    )
   );
 };
 

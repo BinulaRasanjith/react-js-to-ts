@@ -10,7 +10,7 @@ const getPost = (id) =>
 
 const useGetPost = (id) =>
   useQuery({
-    queryKey: ["posts", 1],
+    queryKey: ["posts", id],
     queryFn: (d) => getPost(id),
   });
 
