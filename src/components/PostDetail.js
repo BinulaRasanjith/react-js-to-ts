@@ -8,11 +8,14 @@ const PostDetail = () => {
   const { id } = useParams();
 
   const { data: post, isLoading } = useGetPost(id);
-  const { mutateAsync: deletePost } = useDeletePost();
+  const { mutate: deletePost } = useDeletePost();
 
   const handleEdit = (event) => navigate(`/update-post/${id}`);
 
-  const handleDelete = (event) => deletePost(id).then(() => navigate("/"));
+  const handleDelete = (event) => {
+    deletePost(id);
+    navigate("/");
+  };
 
   return (
     !isLoading && (
