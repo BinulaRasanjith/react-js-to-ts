@@ -32,7 +32,7 @@ const useCreatePost = () => {
     });
 
     // remove cached post with mock id
-    queryClient.removeQueries(["posts", mockId]);
+    queryClient.removeQueries({ queryKey: ["posts", mockId] });
 
     // TODO: add the new post to the cache
 
@@ -48,11 +48,11 @@ const useCreatePost = () => {
     });
 
     // on error revert the cache
-    queryClient.removeQueries(["posts", mockId]);
+    queryClient.removeQueries({ queryKey: ["posts", mockId] });
     queryClient.setQueryData(["posts"], previousPosts);
 
     // invalidate queries
-    queryClient.invalidateQueries();
+    queryClient.invalidateQueries({});
   };
 
   return useMutation({

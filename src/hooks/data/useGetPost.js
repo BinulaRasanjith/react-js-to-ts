@@ -4,7 +4,6 @@ import api from "../../api";
 
 const getPost = (id) =>
   api.get(`/posts/${id}`).then((res) => {
-    console.log(res);
     return res.data;
   });
 

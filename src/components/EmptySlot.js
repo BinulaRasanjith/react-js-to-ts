@@ -1,5 +1,5 @@
 const EmptySlot = () => {
-  return <div>EmptySlot</div>;
+  return <div className="empty-slot">Select a post</div>;
 };
 
 export default EmptySlot;

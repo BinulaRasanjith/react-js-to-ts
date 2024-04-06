@@ -1,5 +1,5 @@
-const PostForm = () => {
-  return <div>PostForm</div>;
+const PostForm = ({ action }) => {
+  return <form className="post-form">PostForm</form>;
 };
 
 export default PostForm;

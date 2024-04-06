@@ -19,8 +19,12 @@ const router = createBrowserRouter([
         element: <PostDetail />,
       },
       {
-        path: "update/:id",
-        element: <PostForm />,
+        path: "update-post/:id",
+        element: <PostForm action="update" />,
+      },
+      {
+        path: "create-post",
+        element: <PostForm action="create" />,
       },
     ],
   },

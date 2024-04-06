@@ -17,7 +17,10 @@ const useDeletePost = () => {
     );
 
     // remove the specific post from the cache
-    queryClient.removeQueries(["posts", deletedPostId]);
+    queryClient.removeQueries({
+      queryKey: ["posts", deletedPostId],
+      exact: true,
+    });
 
     // return the previous post and the deleted post to the context
     return { previousPosts, deletedPost };
@@ -34,7 +37,7 @@ const useDeletePost = () => {
       context: { previousPosts, deletedPost },
     });
 
-    // on success invalidate the queries
+    // on success remove deleted post query & invalidate the queries
     queryClient.invalidateQueries({ queryKey: ["posts"] });
   };
 

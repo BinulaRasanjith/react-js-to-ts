@@ -5,7 +5,7 @@ const getPosts = () => api.get("/posts").then((res) => res.data);
 
 const useGetPosts = () =>
   useQuery({
-    queryKey: ["post"],
+    queryKey: ["posts"],
     queryFn: getPosts,
   });
 

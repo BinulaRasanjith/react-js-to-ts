@@ -1,18 +1,30 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import useGetPost from "../hooks/data/useGetPost";
+import useDeletePost from "../hooks/data/useDeletePost";
+import Button from "./Button";
 
 const PostDetail = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const { data: post, isLoading } = useGetPost(id);
+  const { mutateAsync: deletePost } = useDeletePost();
 
-  console.log(post);
+  const handleEdit = (event) => navigate(`/update-post/${id}`);
+
+  const handleDelete = (event) => deletePost(id).then(() => navigate("/"));
 
   return (
     !isLoading && (
       <div className="post-detail">
         <h2>{post.title}</h2>
         <p>{post.description}</p>
+
+        {/* BUTTON AREA */}
+        <div className="btn-area">
+          <Button label="Edit" type="edit-btn" onClick={handleEdit} />
+          <Button label="Delete" type="delete-btn" onClick={handleDelete} />
+        </div>
       </div>
     )
   );
