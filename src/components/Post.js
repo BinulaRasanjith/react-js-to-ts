@@ -1,21 +1,15 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Post = ({ post }) => {
   const { id } = useParams();
 
-  const navigate = useNavigate();
-
-  const handleClick = (event) => {
-    navigate(`/${post.id}`);
-  };
-
   return (
-    <div
+    <Link
+      to={`/${post.id}`}
       className={`post ${id === post.id ? "post-selected" : "post-hover"}`}
-      onClick={handleClick}
     >
       {post.title}
-    </div>
+    </Link>
   );
 };
 

@@ -25,8 +25,12 @@ const PostDetail = () => {
 
         {/* BUTTON AREA */}
         <div className="btn-area">
-          <Button label="Edit" type="edit-btn" onClick={handleEdit} />
-          <Button label="Delete" type="delete-btn" onClick={handleDelete} />
+          <Button label="Edit" type="change-btn" onClick={handleEdit} />
+          <Button
+            label="Delete"
+            type="destructive-btn"
+            onClick={handleDelete}
+          />
         </div>
       </div>
     )

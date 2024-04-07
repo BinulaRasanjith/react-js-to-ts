@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import api from "../../api";
 
 const updatePost = (updatedPost) =>
-  api.patch(`/posts/${1}`, updatedPost).then((res) => res.data);
+  api.patch(`/posts/${updatedPost.id}`, updatedPost).then((res) => res.data);
 
 const useUpdatePost = () => {
   const queryClient = useQueryClient();

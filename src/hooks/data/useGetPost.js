@@ -10,7 +10,8 @@ const getPost = (id) =>
 const useGetPost = (id) =>
   useQuery({
     queryKey: ["posts", id],
-    queryFn: (d) => getPost(id),
+    queryFn: () => getPost(id),
+    enabled: !!id,
   });
 
 export default useGetPost;

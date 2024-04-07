@@ -12,7 +12,7 @@ const useCreatePost = () => {
     // get the previous posts
     const previousPosts = queryClient.getQueryData(["posts"]);
 
-    const mockId = Date.now();
+    const mockId = String(Date.now());
 
     // add the new post to the cache
     queryClient.setQueryData(["posts"], (previousPosts) => [
@@ -32,7 +32,7 @@ const useCreatePost = () => {
     });
 
     // remove cached post with mock id
-    queryClient.removeQueries({ queryKey: ["posts", mockId] });
+    queryClient.removeQueries({ queryKey: ["posts", mockId], exact: true });
 
     // TODO: add the new post to the cache
 
@@ -48,7 +48,7 @@ const useCreatePost = () => {
     });
 
     // on error revert the cache
-    queryClient.removeQueries({ queryKey: ["posts", mockId] });
+    queryClient.removeQueries({ queryKey: ["posts", mockId], exact: true });
     queryClient.setQueryData(["posts"], previousPosts);
 
     // invalidate queries
