@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 const FloatingButton = () => {
   const navigate = useNavigate();
 
-  const handleClick = (event) => {
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
     navigate("/create-post");
   };
 
