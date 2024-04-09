@@ -10,9 +10,9 @@ const PostDetail = () => {
   const { data: post, isLoading } = useGetPost(id);
   const { mutate: deletePost } = useDeletePost();
 
-  const handleEdit = (event) => navigate(`/update-post/${id}`);
+  const handleEdit: React.MouseEventHandler<HTMLButtonElement> = (event) => navigate(`/update-post/${id}`);
 
-  const handleDelete = (event) => {
+  const handleDelete: React.MouseEventHandler<HTMLButtonElement> = (event) => {
     deletePost(id);
     navigate("/");
   };
@@ -25,10 +25,10 @@ const PostDetail = () => {
 
         {/* BUTTON AREA */}
         <div className="btn-area">
-          <Button label="Edit" type="change-btn" onClick={handleEdit} />
+          <Button label="Edit" colorTheme="change-btn" onClick={handleEdit} />
           <Button
             label="Delete"
-            type="destructive-btn"
+            colorTheme="destructive-btn"
             onClick={handleDelete}
           />
         </div>

@@ -23,10 +23,11 @@ const PostForm = ({ action = "create" }) => {
   const { mutateAsync: createPost } = useCreatePost();
   const { mutate: updatePost } = useUpdatePost();
 
-  const handleInputChange = (event) =>
-    setPost({ ...post, [event.target.name]: event.target.value });
+  const handleInputChange: React.ChangeEventHandler<
+    HTMLInputElement | HTMLTextAreaElement
+  > = (event) => setPost({ ...post, [event.target.name]: event.target.value });
 
-  const handleSubmit = (event) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
     if (action === "update") {
@@ -72,9 +73,10 @@ const PostForm = ({ action = "create" }) => {
       <div className="btn-area">
         <Button
           label={action === "update" ? "Save" : "Create"}
-          type={action === "update" ? "change-btn" : "create-btn"}
+          type="submit"
+          colorTheme={action === "update" ? "change-btn" : "create-btn"}
         />
-        <Button label={"Cancel"} type="destructive-btn" />
+        <Button label={"Cancel"} colorTheme="destructive-btn" />
       </div>
     </form>
   );

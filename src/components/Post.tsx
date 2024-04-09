@@ -1,6 +1,10 @@
 import { Link, useParams } from "react-router-dom";
 
-const Post = ({ post }) => {
+interface PostProps {
+  post: Post;
+}
+
+const Post: React.FC<PostProps> = ({ post }) => {
   const { id } = useParams();
 
   return (
