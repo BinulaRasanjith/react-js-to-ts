@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
+
 import useGetPost from "../hooks/data/useGetPost";
 import useDeletePost from "../hooks/data/useDeletePost";
 import Button from "./Button";
