@@ -24,7 +24,7 @@ const useUpdatePost = () => {
 
     // add the updated post to the cache & on success invalidate the queries
     queryClient.setQueryData(["posts", updatedPost.id], updatedPost);
-    queryClient.invalidateQueries(["posts"]);
+    queryClient.invalidateQueries({ queryKey: ["posts"] });
   };
 
   const handleError = (error, updatedPost, previousPost) => {
@@ -32,7 +32,7 @@ const useUpdatePost = () => {
 
     // on error revert the cache to the previous data & invalidate the queries
     queryClient.setQueryData(["posts", updatedPost.id], previousPost);
-    queryClient.invalidateQueries(["posts"]);
+    queryClient.invalidateQueries({ queryKey: ["posts"] });
   };
 
   return useMutation({

@@ -26,6 +26,11 @@ const PostForm = ({ action = "create" }) => {
   const handleInputChange = (event) =>
     setPost({ ...post, [event.target.name]: event.target.value });
 
+  const handleCancelBtnClick = (event) => {
+    event.preventDefault();
+    navigate("/");
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -72,9 +77,15 @@ const PostForm = ({ action = "create" }) => {
       <div className="btn-area">
         <Button
           label={action === "update" ? "Save" : "Create"}
-          type={action === "update" ? "change-btn" : "create-btn"}
+          type={"submit"}
+          colorTheme={action === "update" ? "change-btn" : "create-btn"}
         />
-        <Button label={"Cancel"} type="destructive-btn" />
+        <Button
+          label={"Cancel"}
+          type={"button"}
+          onClick={handleCancelBtnClick}
+          colorTheme="destructive-btn"
+        />
       </div>
     </form>
   );

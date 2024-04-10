@@ -26,37 +26,31 @@ const useDeletePost = () => {
     return { previousPosts, deletedPost };
   };
 
-  const handleSuccess = (
-    data,
-    deletedPostId,
-    { previousPosts, deletedPost }
-  ) => {
+  const handleSuccess = (data, deletedPostId, context) => {
     console.log("delete-success", {
       data,
       deletedPostId,
-      context: { previousPosts, deletedPost },
+      context,
     });
 
-    // on success remove deleted post query & invalidate the queries
+    // on success invalidate the queries
     queryClient.invalidateQueries({ queryKey: ["posts"] });
   };
 
-  const handleError = (
-    error,
-    deletedPostId,
-    { previousPosts, deletedPost }
-  ) => {
+  const handleError = (error, deletedPostId, context) => {
     console.log("delete-error", {
       error,
       deletedPostId,
-      context: { previousPosts, deletedPost },
+      context,
     });
+
+    const { previousPosts, deletedPost } = context;
 
     // on error revert the cache & invalidate the queries
     queryClient.setQueryData(["posts"], previousPosts);
     queryClient.setQueryData(["posts", deletedPostId], deletedPost);
 
-    queryClient.invalidateQueries(["posts"]);
+    queryClient.invalidateQueries({ queryKey: ["posts"] });
   };
 
   return useMutation({

@@ -25,10 +25,10 @@ const PostDetail = () => {
 
         {/* BUTTON AREA */}
         <div className="btn-area">
-          <Button label="Edit" type="change-btn" onClick={handleEdit} />
+          <Button label="Edit" colorTheme="change-btn" onClick={handleEdit} />
           <Button
             label="Delete"
-            type="destructive-btn"
+            colorTheme="destructive-btn"
             onClick={handleDelete}
           />
         </div>

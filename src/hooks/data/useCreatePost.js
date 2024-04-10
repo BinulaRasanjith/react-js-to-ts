@@ -24,35 +24,40 @@ const useCreatePost = () => {
     return { previousPosts, mockId };
   };
 
-  const handleSuccess = (data, newPost, { previousPosts, mockId }) => {
+  const handleSuccess = (data, newPost, context) => {
     console.log("create-success", {
       data,
       newPost,
-      context: { previousPosts, mockId },
+      context,
     });
+
+    const { mockId } = context;
 
     // remove cached post with mock id
     queryClient.removeQueries({ queryKey: ["posts", mockId], exact: true });
 
-    // TODO: add the new post to the cache
+    //  add the new post to the cache
+    queryClient.setQueryData(["posts", data.id], data);
 
     // invalidate queries
     queryClient.invalidateQueries({ queryKey: ["posts"] });
   };
 
-  const handleError = (error, newPost, { previousPosts, mockId }) => {
+  const handleError = (error, newPost, context) => {
     console.log("create-error", {
       error,
       newPost,
-      context: { previousPosts, mockId },
+      context,
     });
+
+    const { previousPosts, mockId } = context;
 
     // on error revert the cache
     queryClient.removeQueries({ queryKey: ["posts", mockId], exact: true });
     queryClient.setQueryData(["posts"], previousPosts);
 
     // invalidate queries
-    queryClient.invalidateQueries({});
+    queryClient.invalidateQueries({ queryKey: ["posts"] });
   };
 
   return useMutation({
