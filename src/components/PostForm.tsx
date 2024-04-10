@@ -27,6 +27,13 @@ const PostForm = ({ action = "create" }) => {
     HTMLInputElement | HTMLTextAreaElement
   > = (event) => setPost({ ...post, [event.target.name]: event.target.value });
 
+  const handleCancelBtnClick: React.MouseEventHandler<HTMLButtonElement> = (
+    event
+  ) => {
+    event.preventDefault();
+    navigate("/");
+  };
+
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
@@ -76,7 +83,12 @@ const PostForm = ({ action = "create" }) => {
           type="submit"
           colorTheme={action === "update" ? "change-btn" : "create-btn"}
         />
-        <Button label={"Cancel"} colorTheme="destructive-btn" />
+        <Button
+          label={"Cancel"}
+          type="button"
+          onClick={handleCancelBtnClick}
+          colorTheme="destructive-btn"
+        />
       </div>
     </form>
   );

@@ -43,7 +43,8 @@ const useCreatePost = () => {
     // remove cached post with mock id
     queryClient.removeQueries({ queryKey: ["posts", mockId], exact: true });
 
-    // TODO: add the new post to the cache
+    // add the new post to the cache
+    queryClient.setQueryData(["posts", data.id], data);
 
     // invalidate queries
     queryClient.invalidateQueries({ queryKey: ["posts"] });
