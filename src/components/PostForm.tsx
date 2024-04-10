@@ -6,7 +6,7 @@ import useCreatePost from "../hooks/data/useCreatePost";
 import useUpdatePost from "../hooks/data/useUpdatePost";
 import Button from "./Button";
 
-const newPostInitialState = {
+const newPostInitialState: Post = {
   id: undefined,
   title: "",
   description: "",
@@ -39,7 +39,7 @@ const PostForm = ({ action = "create" }) => {
 
   useEffect(() => {
     if (action === "update") {
-      setPost(previousPost);
+      setPost(previousPost ?? newPostInitialState);
     } else {
       setPost(newPostInitialState);
     }

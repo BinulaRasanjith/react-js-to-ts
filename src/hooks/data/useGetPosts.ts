@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "../../api";
 
-const getPosts = () => api.get("/posts").then((res) => res.data);
+const getPosts = () => api.get("/posts").then((res) => res.data as Post[]);
 
 const useGetPosts = () =>
   useQuery({

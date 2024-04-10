@@ -1,18 +1,26 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import api from "../../api";
 
-const deletePost = (deletedPostId) =>
-  api.delete(`/posts/${deletedPostId}`).then((res) => res.data);
+interface Context {
+  previousPosts: Post[];
+  deletedPost: Post;
+}
+
+const deletePost = (deletedPostId: string) =>
+  api.delete(`/posts/${deletedPostId}`).then((res) => res.data as Post);
 
 const useDeletePost = () => {
   const queryClient = useQueryClient();
 
-  const handleMutate = (deletedPostId) => {
-    const previousPosts = queryClient.getQueryData(["posts"]);
-    const deletedPost = queryClient.getQueryData(["posts", deletedPostId]);
+  const handleMutate = (deletedPostId: string) => {
+    const previousPosts = queryClient.getQueryData(["posts"]) as Post[];
+    const deletedPost = queryClient.getQueryData([
+      "posts",
+      deletedPostId,
+    ]) as Post;
 
     // optimistically remove the deleted post from the cache
-    queryClient.setQueryData(["posts"], (oldPosts) =>
+    queryClient.setQueryData(["posts"], (oldPosts: Post[]) =>
       oldPosts.filter((post) => post.id !== deletedPostId)
     );
 
@@ -23,13 +31,13 @@ const useDeletePost = () => {
     });
 
     // return the previous post and the deleted post to the context
-    return { previousPosts, deletedPost };
+    return { previousPosts, deletedPost } as Context;
   };
 
   const handleSuccess = (
-    data,
-    deletedPostId,
-    { previousPosts, deletedPost }
+    data: Post,
+    deletedPostId: string,
+    { previousPosts, deletedPost }: Context
   ) => {
     console.log("delete-success", {
       data,
@@ -42,9 +50,9 @@ const useDeletePost = () => {
   };
 
   const handleError = (
-    error,
-    deletedPostId,
-    { previousPosts, deletedPost }
+    error: any,
+    deletedPostId: string,
+    { previousPosts, deletedPost }: Context = {} as Context
   ) => {
     console.log("delete-error", {
       error,
@@ -56,7 +64,7 @@ const useDeletePost = () => {
     queryClient.setQueryData(["posts"], previousPosts);
     queryClient.setQueryData(["posts", deletedPostId], deletedPost);
 
-    queryClient.invalidateQueries(["posts"]);
+    queryClient.invalidateQueries({ queryKey: ["posts"] });
   };
 
   return useMutation({
