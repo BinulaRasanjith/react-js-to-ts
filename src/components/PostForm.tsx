@@ -6,7 +6,7 @@ import useCreatePost from "../hooks/data/useCreatePost";
 import useUpdatePost from "../hooks/data/useUpdatePost";
 import Button from "./Button";
 
-const newPostInitialState = {
+const newPostInitialState: Post = {
   id: undefined,
   title: "",
   description: "",
@@ -23,15 +23,18 @@ const PostForm = ({ action = "create" }) => {
   const { mutateAsync: createPost } = useCreatePost();
   const { mutate: updatePost } = useUpdatePost();
 
-  const handleInputChange = (event) =>
-    setPost({ ...post, [event.target.name]: event.target.value });
+  const handleInputChange: React.ChangeEventHandler<
+    HTMLInputElement | HTMLTextAreaElement
+  > = (event) => setPost({ ...post, [event.target.name]: event.target.value });
 
-  const handleCancelBtnClick = (event) => {
+  const handleCancelBtnClick: React.MouseEventHandler<HTMLButtonElement> = (
+    event
+  ) => {
     event.preventDefault();
     navigate("/");
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
     if (action === "update") {
@@ -43,7 +46,7 @@ const PostForm = ({ action = "create" }) => {
 
   useEffect(() => {
     if (action === "update") {
-      setPost(previousPost);
+      setPost(previousPost ?? newPostInitialState);
     } else {
       setPost(newPostInitialState);
     }

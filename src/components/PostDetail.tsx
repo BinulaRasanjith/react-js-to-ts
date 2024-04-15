@@ -10,18 +10,21 @@ const PostDetail = () => {
   const { data: post, isLoading } = useGetPost(id);
   const { mutate: deletePost } = useDeletePost();
 
-  const handleEdit = (event) => navigate(`/update-post/${id}`);
+  const handleEdit: React.MouseEventHandler<HTMLButtonElement> = (event) =>
+    navigate(`/update-post/${id}`);
 
-  const handleDelete = (event) => {
-    deletePost(id);
-    navigate("/");
+  const handleDelete: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+    if (id) {
+      deletePost(id);
+      navigate("/");
+    }
   };
 
   return (
     !isLoading && (
       <div className="post-detail">
-        <h2>{post.title}</h2>
-        <p>{post.description}</p>
+        <h2>{post?.title}</h2>
+        <p>{post?.description}</p>
 
         {/* BUTTON AREA */}
         <div className="btn-area">
